@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import SelectLanguage from './SelectLanguage';
+
 class Popular extends Component {
   constructor(props) {
     super(props);
@@ -28,14 +30,8 @@ class Popular extends Component {
   } 
 
   render() {
-    const languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python'];
-
     return (
-      <ul className="languages">
-        {languages.map((language, index) => {
-          return <li onClick={this.handleOnClick} className={this.selectedClass(language)} key={index}>{language}</li>
-        })}
-      </ul>
+      <SelectLanguage selectedLanguage={this.state.selectedLanguage} onSelect={this.handleOnClick} />
     );
   }
 }
