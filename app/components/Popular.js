@@ -1,24 +1,19 @@
 import React, {Component} from 'react';
 
 import SelectLanguage from './SelectLanguage';
+import PopularRepos from './PopularRepos';
+import api from '../utils/api';
 
 class Popular extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      selectedLanguage: 'All'
+      selectedLanguage: 'All',
+      popularRepos: []
     }
 
     this.handleOnClick = this.handleOnClick.bind(this);
-  }
-
-  isSelected(language) {
-    return this.state.selectedLanguage === language;
-  }
-
-  selectedClass(language) {
-    return this.isSelected(language) ? 'selected' : '';
   }
 
   handleOnClick(e) {
@@ -29,9 +24,20 @@ class Popular extends Component {
     this.setState({selectedLanguage: language});
   } 
 
+  componentDidMount() {
+    api.fetchPopularRepos('Java').then(items => {
+      this.setState({
+        popularRepos: items
+      })
+    });
+  }
+
   render() {
     return (
-      <SelectLanguage selectedLanguage={this.state.selectedLanguage} onSelect={this.handleOnClick} />
+      <div>
+        <SelectLanguage selectedLanguage={this.state.selectedLanguage} onSelect={this.handleOnClick} />
+        <PopularRepos repos={this.state.popularRepos} />
+      </div>
     );
   }
 }
