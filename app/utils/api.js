@@ -7,6 +7,10 @@ export default {
 
     return axios.get(encodedUrl).then(({data}) => {
       return data.items;
+    }).catch((e) => {
+      console.log(e);
+      
+      return [];
     });
   }
 };

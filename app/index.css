@@ -16,6 +16,11 @@ li {
     cursor: pointer;
 }
 
+a {
+    color: #d0021b;
+    text-decoration: none;
+}
+
 .languages {
     display: flex;
     justify-content: center;
@@ -28,4 +33,24 @@ li {
 
 .languages li.selected {
     color: #d0021b;
+}
+
+.repos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.repo {
+    margin: 20px;
+    text-align: center;
+}
+
+.repo .repo__items li {
+    margin: 10px;
+}
+
+.repo__avatar {
+    width: 150px;
+    border-radius: 50%;
 }

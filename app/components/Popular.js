@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import SelectLanguage from './SelectLanguage';
-import PopularRepos from './PopularRepos';
+import ReposGrid from './ReposGrid';
 import api from '../utils/api';
 
 class Popular extends Component {
@@ -10,14 +10,19 @@ class Popular extends Component {
 
     this.state = {
       selectedLanguage: 'All',
-      popularRepos: []
-    }
+      popularRepos: null
+    };
 
     this.handleOnClick = this.handleOnClick.bind(this);
   }
 
   handleOnClick(e) {
+    this.setState({popularRepos: null});
+
+    const language = e.target.textContent;
     this.updateLanguage(e.target.textContent);
+
+    this.fetchRepos(language);
   }
 
   updateLanguage(language) {
@@ -25,7 +30,11 @@ class Popular extends Component {
   } 
 
   componentDidMount() {
-    api.fetchPopularRepos('Java').then(items => {
+    this.fetchRepos();
+  }
+
+  fetchRepos(language) {
+    api.fetchPopularRepos(language).then(items => {
       this.setState({
         popularRepos: items
       })
@@ -36,7 +45,9 @@ class Popular extends Component {
     return (
       <div>
         <SelectLanguage selectedLanguage={this.state.selectedLanguage} onSelect={this.handleOnClick} />
-        <PopularRepos repos={this.state.popularRepos} />
+        {!this.state.popularRepos 
+          ? 'Loading...'
+          : <ReposGrid repos={this.state.popularRepos} />}
       </div>
     );
   }
