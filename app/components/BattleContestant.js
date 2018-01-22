@@ -15,7 +15,9 @@ class BattleContestant extends Component {
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.parentSubmit = this.props.onSubmit ? this.props.onSubmit : () => {}
+    this.onReset = this.onReset.bind(this);
+    this.parentSubmit = this.props.onSubmit ? this.props.onSubmit : () => {};
+    this.parentReset = this.props.onReset ? this.props.onReset : () => {};
   }
 
   onChange(e) {
@@ -34,12 +36,21 @@ class BattleContestant extends Component {
           user
         });
 
-        this.parentSubmit(user.id);
+        this.parentSubmit(this.state.username);
       })
       
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  onReset() {
+    this.parentReset(this.state.username);
+
+    this.setState({
+      user: null,
+      username: ''
+    });
   }
 
   renderForm() {
@@ -58,7 +69,8 @@ class BattleContestant extends Component {
         {this.state.user 
           ? <BattleContestantInfo 
               username={this.state.user.login} 
-              avatar={this.state.user.avatar_url} /> 
+              avatar={this.state.user.avatar_url} 
+              onReset={this.onReset} /> 
           : this.renderForm()}
       </div>
     );
