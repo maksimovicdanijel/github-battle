@@ -1,8 +1,14 @@
 import React, {Component} from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { 
+  BrowserRouter as Router, 
+  Route,
+  Switch 
+} from 'react-router-dom';
 
 import Popular from './Popular';
 import Nav from './Nav';
+import Home from './Home';
+import Battle from './Battle';
 
 class App extends Component {
     render() {
@@ -10,7 +16,12 @@ class App extends Component {
           <Router>
             <div className="container">
               <Nav />
-              <Route path="/popular" component={Popular} /> 
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/battle" component={Battle} />
+                <Route path="/popular" component={Popular} />
+                <Route render={() => { return <p>Not found!</p> }} /> 
+              </Switch>
             </div>
           </Router>
         );

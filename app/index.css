@@ -54,3 +54,27 @@ a {
     width: 150px;
     border-radius: 50%;
 }
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav {
+    display: flex;
+}
+
+.nav li {
+    margin-right: 15px;
+}
+
+.nav .active {
+    font-weight: bold;
+}
+
+.button {
+    background: black;
+    color: #fff;
+    padding: 10px 20px;
+}
