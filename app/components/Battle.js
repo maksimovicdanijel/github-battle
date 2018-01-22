@@ -32,7 +32,7 @@ class Battle extends Component {
       battleCanStart
     });
   }
-  
+
   removePlayer(username) {
     const players = this.state.players;
 
@@ -53,7 +53,7 @@ class Battle extends Component {
           && <Link 
               to={{
                 pathname: this.props.location.pathname + '/results',
-                search: `?players[]=${this.state.players.join(',')}`
+                search: `?players=${this.state.players.join(',')}`
               }} 
               className="button"
             >
