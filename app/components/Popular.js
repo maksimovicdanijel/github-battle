@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 
 import SelectLanguage from './SelectLanguage';
 import ReposGrid from './ReposGrid';
+import Loading from './Loading';
+
 import api from '../utils/api';
 
 class Popular extends Component {
@@ -46,7 +48,7 @@ class Popular extends Component {
       <div>
         <SelectLanguage selectedLanguage={this.state.selectedLanguage} onSelect={this.handleOnClick} />
         {!this.state.popularRepos 
-          ? 'Loading...'
+          ? <Loading />
           : <ReposGrid repos={this.state.popularRepos} />}
       </div>
     );

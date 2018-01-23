@@ -67,10 +67,14 @@ class BattleContestant extends Component {
     return (
       <div className="battle-contestant">
         {this.state.user 
-          ? <BattleContestantInfo 
+          ? (
+          <div>
+            <BattleContestantInfo 
               username={this.state.user.login} 
               avatar={this.state.user.avatar_url} 
-              onReset={this.onReset} /> 
+            />
+              <a href="#" onClick={this.onReset}>Reset</a>
+          </div>)
           : this.renderForm()}
       </div>
     );

@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import qs from 'querystring';
 
 import api from '../utils/api';
+import BattleResultsItem from './BattleResultsItem';
+import Loading from './Loading'
 
 class BattleResults extends Component {
   constructor(props) {
@@ -29,14 +31,24 @@ class BattleResults extends Component {
 
   renderResults() {
     return (
-      'results here'
+      <div className="battle-results">
+        <BattleResultsItem 
+          label="Winner" 
+          profile={this.state.winner.profile} 
+          score={this.state.winner.score} />
+
+        <BattleResultsItem 
+          label="Loser" 
+          profile={this.state.loser.profile} 
+          score={this.state.loser.score} />
+      </div>
     );
   }
 
   render() {
     return (
       <div className="battle-results-container">
-        {this.state.winner && this.state.loser ? this.renderResults() : 'Loading...'}
+        {this.state.winner && this.state.loser ? this.renderResults() : <Loading />}
       </div>
     );
   }

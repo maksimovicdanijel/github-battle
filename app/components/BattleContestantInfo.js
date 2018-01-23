@@ -7,15 +7,14 @@ const BattleContestantInfo = (props) => {
       <img className="avatar" src={props.avatar} alt={`AVatar for ${props.username}`}/>
       <h5>{props.username}</h5>
 
-      <a href="#" onClick={props.onReset}>Reset</a>
+      {props.children}
     </div>
   );
 };
 
 BattleContestantInfo.propTypes = {
   username: PropTypes.string.isRequired,
-  avatar: PropTypes.string.isRequired,
-  onReset: PropTypes.func.isRequired
+  avatar: PropTypes.string.isRequired
 };
 
 export default BattleContestantInfo;
